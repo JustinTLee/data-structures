@@ -127,9 +127,9 @@ class TestSingleLinkedList(unittest.TestCase):
     def test_deleteValue(self):
         for k in range(2, 5 + 1):
             if k % 2 == 0:
-                self.testSingleLinkedList.append(2)
+                self.testSingleLinkedList.appendNode(2)
             else:
-                self.testSingleLinkedList.append(1)
+                self.testSingleLinkedList.appendNode(1)
 
         # linked list looks like:
         # [1] -> [2] -> [1] -> [2] -> [1] -> [2] -> X
