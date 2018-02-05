@@ -3,6 +3,28 @@
 #                 - create singleLinkedList class
 #                 - create singleLinkedLIst methods: nNodes, printLinkedList, returnValue, appendNode, insertNode
 #                                                    popLinkedList, deleteNode, __reachLinkedListPos
+# 2018-02-05 - JL - finished writing and validated deleteValue method
+
+# node:
+# - attributes:
+#     - value
+#     - previous node
+#     - next node
+
+# singleLinkedList:
+# - attributes:
+#     - start node (private)
+#     - number of nodes (private)
+# - methods:
+#     - number of nodes (getter)
+#     - printLinkedList
+#     - returnValue
+#     - appendNode
+#     - insertNode
+#     - popLinkedList
+#     - deleteNode
+#     - deleteValue
+#     - reachLinkedListPos (private)
 
 class node:
 	
@@ -159,10 +181,12 @@ class singleLinkedList:
 		# if end node's value is equal to the value to be deleted, set the second to last node to be the end of the linked list
 		while currentNode != None:
 			if currentNode.value == value:
+				currentNode = currentNode.nextNode
 				self.deleteNode(currentPos)
-				
-				if currentPos == 1:
+
+				if (currentPos == 1) & (currentNode != None):
 					currentNode = self.__startNode
+
 			else:
 				currentNode = currentNode.nextNode
 				currentPos += 1
