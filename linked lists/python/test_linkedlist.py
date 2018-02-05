@@ -124,24 +124,37 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(self.testSingleLinkedList.nNodes, 2)
         self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 2 ]-->[ 2 | 4 ]-->X")
 
-    def test_deleteValue(self):
-        for k in range(2, 5 + 1):
-            if k % 2 == 0:
-                self.testSingleLinkedList.appendNode(2)
-            else:
-                self.testSingleLinkedList.appendNode(1)
+        # linked list looks like:
+        # [4] -> X
+        self.testSingleLinkedList.deleteNode(1)
+        self.assertEqual(self.testSingleLinkedList.nNodes, 1)
+        self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 4 ]-->X")
 
         # linked list looks like:
-        # [1] -> [2] -> [1] -> [2] -> [1] -> [2] -> X
-        self.testSingleLinkedList.deleteValue(3)
-        self.assertEqual(self.testSingleLinkedList.nNodes, 6)
-        self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 1 ]-->[ 2 | 2 ]-->[ 3 | 1 ]-->[ 4 | 2 ]-->[ 5 | 1 ]-->[ 6 | 2 ]-->X")
+        # X
+        self.testSingleLinkedList.deleteNode(1)
+        self.assertEqual(self.testSingleLinkedList.nNodes, 0)
+        self.assertEqual(self.testSingleLinkedList.printLinkedList(), "X")
 
-        # linked list looks like:
-        # [1] -> [1] -> [1] -> X
-        self.testSingleLinkedList.deleteValue(3)
-        self.assertEqual(self.testSingleLinkedList.nNodes, 3)
-        self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 1 ]-->[ 2 | 1 ]-->[ 3 | 1 ]-->X")
+    # def test_deleteValue(self):
+    #     for k in range(2, 6 + 1):
+    #         if k % 2 == 0:
+    #             self.testSingleLinkedList.appendNode(2)
+    #         else:
+    #             self.testSingleLinkedList.appendNode(1)
+
+    #     # linked list looks like:
+    #     # [1] -> [2] -> [1] -> [2] -> [1] -> [2] -> X
+    #     self.testSingleLinkedList.deleteValue(3)
+    #     self.assertEqual(self.testSingleLinkedList.nNodes, 6)
+    #     self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 1 ]-->[ 2 | 2 ]-->[ 3 | 1 ]-->[ 4 | 2 ]-->[ 5 | 1 ]-->[ 6 | 2 ]-->X")
+
+    #     # linked list looks like:
+    #     # [1] -> [1] -> [1] -> X
+    #     self.testSingleLinkedList.deleteValue(2)
+    #     print(self.testSingleLinkedList.printLinkedList())
+    #     self.assertEqual(self.testSingleLinkedList.nNodes, 3)
+    #     self.assertEqual(self.testSingleLinkedList.printLinkedList(), "[ 1 | 1 ]-->[ 2 | 1 ]-->[ 3 | 1 ]-->X")
 
 if __name__ == '__main__':
     unittest.main(verbosity = 2)

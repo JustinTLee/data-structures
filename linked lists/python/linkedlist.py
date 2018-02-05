@@ -58,11 +58,14 @@ class singleLinkedList:
 		# create a new node
 		newNode = node(value)
 
-		# loop through list until reach end of linked list
-		endNode, _ = self.__reachLinkedListPos(self.__nNodes)
+		if self.__nNodes == 0:
+			self.__startNode = node(value)
+		else:
+			# loop through list until reach end of linked list
+			endNode, _ = self.__reachLinkedListPos(self.__nNodes)
 
-		# link last node to new node and increment number of nodes by 1
-		endNode.nextNode = newNode
+			# link last node to new node and increment number of nodes by 1
+			endNode.nextNode = newNode
 		self.__nNodes += 1
 
 		return
@@ -145,6 +148,25 @@ class singleLinkedList:
 
 		# decrement number of nodes by 1
 		self.__nNodes -= 1
+		return
+
+	def deleteValue(self, value):
+		currentPos = 1
+		currentNode = self.__startNode
+
+		# if node #1's value is equal to the value to be deleted, set node #2 to be the start the of the linked list
+		# if node n's value is equal to the value to be deleted, remove that node and link the previous node to the next node
+		# if end node's value is equal to the value to be deleted, set the second to last node to be the end of the linked list
+		while currentNode != None:
+			if currentNode.value == value:
+				self.deleteNode(currentPos)
+				
+				if currentPos == 1:
+					currentNode = self.__startNode
+			else:
+				currentNode = currentNode.nextNode
+				currentPos += 1
+
 		return
 
 	def __reachLinkedListPos(self, pos):
